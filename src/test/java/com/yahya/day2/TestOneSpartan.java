@@ -33,4 +33,15 @@ public class TestOneSpartan {
         // Get the Connection header
         System.out.println("response.getHeader(\"Connection\") = " + response.getHeader("Connection"));
     }
+
+    @Test
+    public void testContentTypeHeader(){
+
+        // Sending a get request to this url and saving the response into Response code
+        Response response = get("http://44.211.192.252:8000/api/spartans/1");
+
+        // RestAssured special support for common headers like content-type
+        System.out.println("response.contentType() = " + response.contentType());
+        System.out.println("response.getContentType() = " + response.getContentType());
+    }
 }
