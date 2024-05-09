@@ -1,15 +1,34 @@
 package com.yahya.day2;
 
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.get;
 
-public class TestOneSpartan {
+public class TestOneSpartan2 {
 
     // GET http://44.211.192.252:8000/api/spartans/1
+
+    // We can break down above url into 3 parts and tell RestAssured to append it at the end of our endpoints
+
+    /**
+     * BaseURI : http://44.211.192.252:8000
+     * BasePath : /api
+     * Anything else comes after actual resources
+     *
+     * For RA the whole URL will be BaseURI + BasePath + what you put in get("here")
+     */
+    @BeforeAll
+    public static void setup(){
+
+        RestAssured.baseURI = "http://44.211.192.252:8000";
+        RestAssured.basePath = "/api";
+    }
+
     @Test
     public void testOneSpartan(){
 
@@ -40,7 +59,8 @@ public class TestOneSpartan {
     public void testContentTypeHeader(){
 
         // Sending a get request to this url and saving the response into Response code
-        Response response = get("http://44.211.192.252:8000/api/spartans/1");
+        // Response response = get("http://44.211.192.252:8000/api/spartans/1");
+        Response response = get("/spartans/1");
 
         // RestAssured special support for common headers like content-type
         System.out.println("response.contentType() = " + response.contentType());
