@@ -60,8 +60,25 @@ public class TestSpartan3 {
         // need to provide extra header information to get xml response
         // will start using some method chaining to see how I can get additional information to the request
         Response response = given()
-                .header("Accept", "application/xml")
+                //.header("Accept", "application/xml")
+                .header("Accept", ContentType.XML)
                 .when()
-                .get("/spartan");
+                .get("/spartans");
+
+        response.prettyPrint();
+
+        Assertions.assertEquals(200, response.statusCode());
+        Assertions.assertEquals(ContentType.XML.toString(), response.getContentType());
+    }
+
+    // SEND REQUEST TO GET http:/search?nameContains=Ea&gender=Male
+    @Test
+    public void testSearch(){
+
+        Response response = given().
+                queryParam("nameContains", "Ea").
+                queryParam("gender", "Male").
+                when().get("/spartans/search");
+        response.prettyPrint();
     }
 }
