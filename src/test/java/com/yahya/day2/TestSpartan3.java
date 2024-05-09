@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static io.restassured.RestAssured.*;
 
 public class TestSpartan3 {
@@ -44,5 +46,22 @@ public class TestSpartan3 {
         System.out.println("response.path(\"[0].gender\") = " + response.path("[0].gender"));
 
         System.out.println("response.path(\"gender[0]\") = " + response.path("gender[0]"));
+
+        // Get all the ids and store them into List<Integer>
+        List<Integer> idList = response.path("id");
+        System.out.println("idList = " + idList);
+    }
+
+    @Test
+    public void testGetXMLResponse(){
+
+        // RestAssured use method chaining extensively to combine all parts of the request
+        // and very the response in one shot
+        // need to provide extra header information to get xml response
+        // will start using some method chaining to see how I can get additional information to the request
+        Response response = given()
+                .header("Accept", "application/xml")
+                .when()
+                .get("/spartan");
     }
 }
