@@ -29,6 +29,22 @@ public class TestOneSpartan2 {
         RestAssured.basePath = "/api";
     }
 
+    // Test for checking the GET api/hello Endpoint
+    // Verify status code is 200, content type is text/plain, body is hello from Sparta
+    @Test
+    public void testHelloAgain(){
+
+        Response response = get("/hello");
+
+        Assertions.assertEquals(200, response.statusCode());
+        // This did not work because the actual response had extra text at the end
+        // Assertions.assertEquals(ContentType.TEXT.toString(), response.contentType());
+        // use string instead
+        Assertions.assertEquals("text/plain;charset=UTF-8", response.contentType());
+        Assertions.assertEquals("Hello from Sparta", response.asString());
+
+    }
+
     @Test
     public void testOneSpartan(){
 
