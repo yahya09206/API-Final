@@ -1,6 +1,8 @@
 package com.yahya.day2;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
@@ -43,5 +45,39 @@ public class TestOneSpartan {
         // RestAssured special support for common headers like content-type
         System.out.println("response.contentType() = " + response.contentType());
         System.out.println("response.getContentType() = " + response.getContentType());
+
+        // Assertion to verify that the contentType() = application/json
+        Assertions.assertEquals("application/json", response.contentType());
+
+        // Import io.restassured.http.ContentType;
+        System.out.println("ContentType.JSON = " + ContentType.JSON);
+        System.out.println("ContentType.XML = " + ContentType.XML);
+        System.out.println("ContentType.TEXT = " + ContentType.TEXT);
+        System.out.println("ContentType.URLENC = " + ContentType.URLENC);
+
+        Assertions.assertEquals(ContentType.JSON.toString() , response.contentType());
+    }
+
+    /**
+     * {
+     *     "id": 1,
+     *     "name": "Meade",
+     *     "gender": "Male",
+     *     "phone": 3584128232
+     * }
+     */
+    @Test
+    public void testJSONBody(){
+
+        // Sending a get request to this url and saving the response into Response code
+        Response response = get("http://44.211.192.252:8000/api/spartans/1");
+
+        response.prettyPrint();
+
+        // Just like navigating through html using xpath to get to certain elements
+        // you can navigate through json to get the value of certain keys using jsonpath
+        // the easiest way to get the value is using jsonpath is using path method from response object
+        System.out.println("response.path(\"id\") = " + response.path("id"));
+
     }
 }
