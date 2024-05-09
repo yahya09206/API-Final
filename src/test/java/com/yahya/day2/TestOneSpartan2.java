@@ -33,7 +33,7 @@ public class TestOneSpartan2 {
     public void testOneSpartan(){
 
         // Sending a get request to this url and saving the response into Response code
-        Response response = get("http://44.211.192.252:8000/api/spartans/1");
+        Response response = get("/spartans/1");
 
         System.out.println("response.getStatusCode() = " + response.getStatusCode());
         // Easier way to read in JSON format
@@ -90,7 +90,7 @@ public class TestOneSpartan2 {
     public void testJSONBody(){
 
         // Sending a get request to this url and saving the response into Response code
-        Response response = get("http://44.211.192.252:8000/api/spartans/1");
+        Response response = get("/spartans/1");
 
         response.prettyPrint();
 
