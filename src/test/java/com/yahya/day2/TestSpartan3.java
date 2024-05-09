@@ -36,6 +36,13 @@ public class TestSpartan3 {
 
         Response response = get("/spartans");
         response.prettyPrint();
+
         Assertions.assertEquals(200, response.statusCode());
+        Assertions.assertEquals(ContentType.JSON.toString(), response.contentType());
+
+        // Get gender of first item in the array
+        System.out.println("response.path(\"[0].gender\") = " + response.path("[0].gender"));
+
+        System.out.println("response.path(\"gender[0]\") = " + response.path("gender[0]"));
     }
 }
