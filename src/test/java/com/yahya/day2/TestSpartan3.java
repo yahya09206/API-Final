@@ -35,7 +35,7 @@ public class TestSpartan3 {
     public void testGettingAllSpartans(){
 
         Response response = get("/spartans");
-
+        response.prettyPrint();
         Assertions.assertEquals(200, response.statusCode());
     }
 }
