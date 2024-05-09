@@ -1,4 +1,4 @@
-package com.yahya;
+package com.yahya.Day1;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
@@ -10,6 +10,8 @@ public class TestSpartanApi {
 
     @Test
     public void testHello(){
+
+
         // RestAssured.get("http://44.211.192.252:8000/api/hello");
         // the result of sending request can be stored in Response object coming from RestAssured
         Response response = get("http://44.211.192.252:8000/api/hello");
