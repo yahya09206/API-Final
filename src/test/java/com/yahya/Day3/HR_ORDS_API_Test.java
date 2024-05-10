@@ -104,11 +104,14 @@ public class HR_ORDS_API_Test {
     public void testSingleJobWithPathParam(){
 
         Response response = given().log().all().pathParam("job_id", "AD_VP").when().get("/jobs/{job_id}");
-        response.prettyPrint();
+        // response.prettyPrint();
+        response.prettyPeek();
 
         Assertions.assertEquals(ContentType.JSON.toString(), response.contentType());
         String jobTitle = response.path("job_title");
         System.out.println(jobTitle);
         Assertions.assertEquals("Administration Vice President", jobTitle);
+
+
     }
 }
