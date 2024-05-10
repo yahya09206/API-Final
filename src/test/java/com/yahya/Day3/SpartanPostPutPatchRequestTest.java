@@ -5,6 +5,7 @@ import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
 
 public class SpartanPostPutPatchRequestTest extends SpartanTestBase{
 
@@ -30,6 +31,9 @@ public class SpartanPostPutPatchRequestTest extends SpartanTestBase{
                 .body(strBody)// this is how we provide the body
                 .post("/spartans")
                 .then().log().all().statusCode(201)
-                .contentType(ContentType.JSON);
+                .contentType(ContentType.JSON)
+                .body("success", is("A Spartan is Born!"))
+                .body("data.name", is("B23 ADD DATA-4"))
+                .body("data.phone", is(1231234123));
     }
 }
