@@ -1,13 +1,16 @@
 package com.yahya.Day3;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.get;
-import static io.restassured.RestAssured.reset;
+import java.util.List;
+
+import static io.restassured.RestAssured.*;
 
 public class HR_ORDS_API_Test {
 
@@ -48,9 +51,25 @@ public class HR_ORDS_API_Test {
     @Test
     public void testGetAllJobs(){
 
-        Response response = get("/jobs");
+        // Get response from Response object and log everything about the request
+        Response response = given().log().all().when().get("/jobs");
 
         response.prettyPrint();
+
+        Assertions.assertEquals(200, response.statusCode());
+        Assertions.assertEquals(ContentType.JSON.toString(), response.contentType());
+        // to get something from the body, you simply use the path to the response
+        int countValue = response.path("count");
+        Assertions.assertEquals(19, countValue);
+
+        String jobID = response.path("items[1].job_id");
+        System.out.println("jobID = " + jobID);
+
+        int fourthMinSalary = response.path("items[3].min_salary");
+        System.out.println("fourthMinSalary = " + fourthMinSalary);
+
+        List<String> jobs = response.path("items.job_title");
+        System.out.println("jobs = " + jobs);
     }
 
 
