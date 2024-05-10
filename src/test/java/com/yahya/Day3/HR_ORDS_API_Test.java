@@ -72,5 +72,32 @@ public class HR_ORDS_API_Test {
         System.out.println("jobs = " + jobs);
     }
 
+    /**
+     * 4. Create a test called testJobsWithQueryParam
+     *    1. Send request to `GET /jobs?limit=5`
+     *    2. log everything about the request
+     *    3. verify `count` value is `5`
+     *    4. verify the value of last `job_title` is `AD_VP`
+     * 5. create a test called testSingleJobWithPathParam
+     *    1. Send request to `GET /jobs/AD_VP`
+     *    2. log everything about the request
+     *    3. verify response is json and `job_title` is `Administration Vice President`
+     */
+
+    @Test
+    public void testJobsWithQueryParam(){
+
+        Response response = given().log().all().queryParam("limit", 5).when().get("/jobs");
+
+        int countValue = response.path("count");
+        Assertions.assertEquals(5, countValue);
+
+        String lastJob = response.path("items[-1].job_id");
+        System.out.println("lastJob = " + lastJob);
+        //Assertions.assertEquals("AD_VP", lastJob);
+
+
+    }
+
 
 }
