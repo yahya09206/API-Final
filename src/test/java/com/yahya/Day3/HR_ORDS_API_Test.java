@@ -78,10 +78,6 @@ public class HR_ORDS_API_Test {
      *    2. log everything about the request
      *    3. verify `count` value is `5`
      *    4. verify the value of last `job_title` is `AD_VP`
-     * 5. create a test called testSingleJobWithPathParam
-     *    1. Send request to `GET /jobs/AD_VP`
-     *    2. log everything about the request
-     *    3. verify response is json and `job_title` is `Administration Vice President`
      */
 
     @Test
@@ -94,10 +90,25 @@ public class HR_ORDS_API_Test {
 
         String lastJob = response.path("items[-1].job_id");
         System.out.println("lastJob = " + lastJob);
-        //Assertions.assertEquals("AD_VP", lastJob);
-
+        Assertions.assertEquals("AD_VP", lastJob);
 
     }
 
+    /**
+     * create a test called testSingleJobWithPathParam
+     *      *    1. Send request to `GET /jobs/AD_VP`
+     *      *    2. log everything about the request
+     *      *    3. verify response is json and `job_title` is `Administration Vice President`
+     */
+    @Test
+    public void testSingleJobWithPathParam(){
 
+        Response response = given().log().all().pathParam("job_id", "AD_VP").when().get("/jobs/{job_id}");
+        response.prettyPrint();
+
+        Assertions.assertEquals(ContentType.JSON.toString(), response.contentType());
+        String jobTitle = response.path("job_title");
+        System.out.println(jobTitle);
+        Assertions.assertEquals("Administration Vice President", jobTitle);
+    }
 }
