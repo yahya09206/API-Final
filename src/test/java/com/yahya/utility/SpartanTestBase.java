@@ -6,6 +6,11 @@ import org.junit.jupiter.api.BeforeAll;
 
 import static io.restassured.RestAssured.reset;
 
+/**
+ * This class will serve as Base Class to set up BaseURI and BasePATH
+ * and clean up after all the tests for any Spartan related test classes
+ */
+
 public class SpartanTestBase {
 
     @BeforeAll
