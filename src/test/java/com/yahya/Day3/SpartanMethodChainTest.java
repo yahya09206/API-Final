@@ -47,6 +47,5 @@ public class SpartanMethodChainTest extends SpartanTestBase {
                 .body("content.name", hasItem("Sean"))
                 .body("content.gender", everyItem(is("Male")))
                 .body("content.name", everyItem(containsStringIgnoringCase("ea")));
-
     }
 }
