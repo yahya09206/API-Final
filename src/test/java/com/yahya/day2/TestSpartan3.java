@@ -81,4 +81,11 @@ public class TestSpartan3 {
                 when().get("/spartans/search");
         response.prettyPrint();
     }
+
+    @Test
+    public void testOneSpartanPathParam(){
+
+        Response response = given().pathParam("id", 4).log().all() // will log everything about request
+                .when().get("/spartans/{id}");
+    }
 }
