@@ -7,6 +7,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import static org.hamcrest.Matchers.*;
+
 
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class HR_ORDS_API_Test {
      *    5. count value is 19
      *    6. save second job_id into String
      *    7. print 4th mix_salary and
-     *    8. save all of the job_title into List<String>
+     *    8. save all the job_title into List<String>
      */
 
     // Set up and teardown
