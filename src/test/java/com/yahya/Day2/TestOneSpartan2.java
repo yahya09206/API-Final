@@ -1,20 +1,67 @@
-package com.yahya.day2;
+package com.yahya.Day2;
 
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class TestOneSpartan {
+
+public class TestOneSpartan2 {
 
     // GET http://44.211.192.252:8000/api/spartans/1
+
+    // We can break down above url into 3 parts and tell RestAssured to append it at the end of our endpoints
+
+    /**
+     * BaseURI : http://44.211.192.252:8000
+     * BasePath : /api
+     * Anything else comes after actual resources
+     *
+     * For RA the whole URL will be BaseURI + BasePath + what you put in get("here")
+     */
+    @BeforeAll
+    public static void setup(){
+
+        RestAssured.baseURI = "http://44.211.192.252:8000";
+        RestAssured.basePath = "/api";
+    }
+
+    @AfterAll
+    public static void tearDown(){
+
+        // In order to avoid the static value accidentally being carried over to different classes when using different
+        // apis, it's better to set the baseURI basePATH back to its original value using reset method
+        // RestAssured.rest()
+        reset();
+
+    }
+
+    // Test for checking the GET api/hello Endpoint
+    // Verify status code is 200, content type is text/plain, body is hello from Sparta
+    @Test
+    public void testHelloAgain(){
+
+        Response response = get("/hello");
+
+        Assertions.assertEquals(200, response.statusCode());
+        // This did not work because the actual response had extra text at the end
+        // Assertions.assertEquals(ContentType.TEXT.toString(), response.contentType());
+        // use string instead
+        Assertions.assertEquals("text/plain;charset=UTF-8", response.contentType());
+        Assertions.assertEquals("Hello from Sparta", response.asString());
+
+    }
+
     @Test
     public void testOneSpartan(){
 
         // Sending a get request to this url and saving the response into Response code
-        Response response = get("http://44.211.192.252:8000/api/spartans/1");
+        Response response = get("/spartans/1");
 
         System.out.println("response.getStatusCode() = " + response.getStatusCode());
         // Easier way to read in JSON format
@@ -40,7 +87,8 @@ public class TestOneSpartan {
     public void testContentTypeHeader(){
 
         // Sending a get request to this url and saving the response into Response code
-        Response response = get("http://44.211.192.252:8000/api/spartans/1");
+        // Response response = get("http://44.211.192.252:8000/api/spartans/1");
+        Response response = get("/spartans/1");
 
         // RestAssured special support for common headers like content-type
         System.out.println("response.contentType() = " + response.contentType());
@@ -70,7 +118,7 @@ public class TestOneSpartan {
     public void testJSONBody(){
 
         // Sending a get request to this url and saving the response into Response code
-        Response response = get("http://44.211.192.252:8000/api/spartans/1");
+        Response response = get("/spartans/1");
 
         response.prettyPrint();
 

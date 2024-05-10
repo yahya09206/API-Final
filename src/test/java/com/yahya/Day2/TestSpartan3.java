@@ -1,4 +1,4 @@
-package com.yahya.day2;
+package com.yahya.Day2;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
