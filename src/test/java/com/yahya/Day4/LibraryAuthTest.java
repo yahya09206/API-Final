@@ -47,10 +47,10 @@ public class LibraryAuthTest {
 
         given().log().all()
                 //.header("Content-Type", "application/x-www-form-urlencoded")
-                .contentType(ContentType.JSON)
+                .contentType(ContentType.URLENC)
                 .formParam("email", "librarian1@library")
                 .formParam("password", "libraryUser")
-                .when().get("/login")
+                .when().post("/login")
                 .then().log().all().statusCode(200);
     }
 }
