@@ -79,8 +79,6 @@ public class SpartanPutPatchTest extends SpartanTestBase {
         Response response = get("/spartans");
         int lastId = response.path("id[-1]");
 
-
-
         /**
          * DELETE /spartans/{id}
          */
