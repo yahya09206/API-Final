@@ -2,8 +2,10 @@ package com.yahya.Day4;
 
 import com.yahya.utility.SpartanTestBase;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
+import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -74,13 +76,18 @@ public class SpartanPutPatchTest extends SpartanTestBase {
     @Test
     public void testDelete(){
 
+        Response response = get("/spartans");
+        int lastId = response.path("id[-1]");
+
+
+
         /**
          * DELETE /spartans/{id}
          */
 
         given()
                 .log().all()
-                .pathParams("id", 10)
+                .pathParams("id", lastId)
                 .when()
                 .delete("/spartans/{id}")
                 .then()
@@ -89,5 +96,4 @@ public class SpartanPutPatchTest extends SpartanTestBase {
 
 
     }
-
 }
