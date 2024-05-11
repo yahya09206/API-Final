@@ -53,4 +53,24 @@ public class LibraryAuthTest {
                 .when().post("/login")
                 .then().log().all().statusCode(200);
     }
+
+    @Test
+    public void testDashboardStats(){
+
+        Response response = given().log().all()
+                //.header("Content-Type", "application/x-www-form-urlencoded")
+                .contentType(ContentType.URLENC)
+                .formParam("email", "librarian1@library")
+                .formParam("password", "libraryUser")
+                .when().post("/login");
+
+        String tokenFromResp = response.path("token");
+        System.out.println("tokenFromResp = " + tokenFromResp);
+
+        given()
+                .log().all()
+                .header("x-library-token", tokenFromResp)
+                .when().get("/dashboard_stats")
+                .then().log().all().statusCode(200);
+    }
 }
