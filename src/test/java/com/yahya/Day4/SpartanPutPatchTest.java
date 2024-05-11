@@ -44,4 +44,31 @@ public class SpartanPutPatchTest extends SpartanTestBase {
 
     }
 
+    @Test
+    public void testPartialUpdate(){
+
+        /**
+         * PATCH(Partial Update) /spartans/{id}
+         * content type is JSON
+         * body is
+         * {
+         *     "name": "Updated Name"
+         * }
+         * Expecting a 204
+         */
+
+        String updatedBody = "{\"name\": \"Updated Name\"\n" + "}";
+
+        given()
+                .log().all()
+                .pathParams("id", 5)
+                .contentType(ContentType.JSON)
+                .body(updatedBody)
+                .when()
+                .patch("spartans/{id}")
+                .then()
+                .log().all()
+                .statusCode(equalTo(204));
+    }
+
 }
