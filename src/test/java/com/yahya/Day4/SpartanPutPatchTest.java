@@ -71,4 +71,23 @@ public class SpartanPutPatchTest extends SpartanTestBase {
                 .statusCode(equalTo(204));
     }
 
+    @Test
+    public void testDelete(){
+
+        /**
+         * DELETE /spartans/{id}
+         */
+
+        given()
+                .log().all()
+                .pathParams("id", 10)
+                .when()
+                .delete("/spartans/{id}")
+                .then()
+                .log().all()
+                .statusCode(204);
+
+
+    }
+
 }
