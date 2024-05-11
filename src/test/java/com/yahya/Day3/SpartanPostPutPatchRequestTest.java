@@ -14,6 +14,7 @@ public class SpartanPostPutPatchRequestTest extends SpartanTestBase{
 
         // Post /spartans
         /**
+         * PUT /spartans/{id}
          * content type is JSON
          * body is
          * {
