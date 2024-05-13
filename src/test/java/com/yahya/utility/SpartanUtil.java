@@ -17,5 +17,7 @@ public class SpartanUtil {
         bodyMap.put("phone", faker.number().numberBetween(5000000000L, 9999999999L));
         System.out.println("bodyMap = " + bodyMap);
 
+        return bodyMap;
+
     }
 }

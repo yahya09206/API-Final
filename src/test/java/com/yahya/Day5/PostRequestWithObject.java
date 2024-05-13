@@ -90,6 +90,26 @@ public class PostRequestWithObject extends SpartanTestBase {
                 .statusCode(201);
     }
 
+    @Test
+    public void testUpdateDataWithRandomBody(){
+
+        // Instead of guessing what id exists in the server
+        // I can send a request to get all spartans and get last json object id
+        int lastId = get("/spartans").path("id[-1]");
+        System.out.println("lastId = " + lastId);
+
+        // Prepare updated body
+        Map<String, Object> updatedBodyMap = SpartanUtil.getRandomSpartanMapBody();
+
+        given().log().all()
+                .pathParam("id", lastId)
+                .contentType(ContentType.JSON)
+                .body(updatedBodyMap)
+                .when().put("/spartans/{id}")
+                .then().log().all()
+                .statusCode(204);
+    }
+
 
 
 }
