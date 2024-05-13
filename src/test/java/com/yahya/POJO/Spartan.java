@@ -51,6 +51,12 @@ public class Spartan {
         // no body required
     }
 
+    public Spartan(String name, String gender, long phone) {
+        this.name = name;
+        this.gender = gender;
+        this.phone = phone;
+    }
+
     public String getName() {
         return name;
     }
@@ -73,5 +79,14 @@ public class Spartan {
 
     public void setPhone(long phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Spartan{" +
+                "name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", phone=" + phone +
+                '}';
     }
 }
