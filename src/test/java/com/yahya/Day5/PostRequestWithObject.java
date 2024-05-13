@@ -1,5 +1,6 @@
 package com.yahya.Day5;
 
+import com.github.javafaker.Faker;
 import com.yahya.utility.SpartanTestBase;
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +39,7 @@ public class PostRequestWithObject extends SpartanTestBase {
         Map<String, Object> bodyMap = new LinkedHashMap<>();
         bodyMap.put("name", "API-2 Post");
         bodyMap.put("gender", "Male");
-        bodyMap.put("phone", "5554447777");
+        bodyMap.put("phone", 5554447777L);
         System.out.println("bodyMap = " + bodyMap);
 
         /**
@@ -60,10 +61,13 @@ public class PostRequestWithObject extends SpartanTestBase {
     @Test
     public void testPostRequestWithAMapAndRandomData(){
 
+        Faker faker = new Faker();
+
         Map<String, Object> bodyMap = new LinkedHashMap<>();
-        bodyMap.put("name", "API-2 Post");
-        bodyMap.put("gender", "Male");
-        bodyMap.put("phone", "5554447777");
+        bodyMap.put("name", faker.name().firstName());
+        bodyMap.put("gender", faker.demographic().sex());
+        // get a number between 500,000,0000 - 999,999,9999
+        bodyMap.put("phone", faker.number().numberBetween(5000000000L, 9999999999L));
         System.out.println("bodyMap = " + bodyMap);
 
         /**
