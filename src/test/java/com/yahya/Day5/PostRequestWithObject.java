@@ -2,6 +2,7 @@ package com.yahya.Day5;
 
 import com.github.javafaker.Faker;
 import com.yahya.utility.SpartanTestBase;
+import com.yahya.utility.SpartanUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
@@ -61,14 +62,17 @@ public class PostRequestWithObject extends SpartanTestBase {
     @Test
     public void testPostRequestWithAMapAndRandomData(){
 
-        Faker faker = new Faker();
+//        Faker faker = new Faker();
+//
+//        Map<String, Object> bodyMap = new LinkedHashMap<>();
+//        bodyMap.put("name", faker.name().firstName());
+//        bodyMap.put("gender", faker.demographic().sex());
+//        // get a number between 500,000,0000 - 999,999,9999
+//        bodyMap.put("phone", faker.number().numberBetween(5000000000L, 9999999999L));
+//        System.out.println("bodyMap = " + bodyMap);
 
-        Map<String, Object> bodyMap = new LinkedHashMap<>();
-        bodyMap.put("name", faker.name().firstName());
-        bodyMap.put("gender", faker.demographic().sex());
-        // get a number between 500,000,0000 - 999,999,9999
-        bodyMap.put("phone", faker.number().numberBetween(5000000000L, 9999999999L));
-        System.out.println("bodyMap = " + bodyMap);
+        // Call method as below once utility is set up
+        Map<String, Object> bodyMap = SpartanUtil.getRandomSpartanMapBody();
 
         /**
          * Jackson-databind is the library for serialization and de-serialization
