@@ -41,6 +41,12 @@ public class PostRequestWithObject extends SpartanTestBase {
         bodyMap.put("phone", "5554447777");
         System.out.println("bodyMap = " + bodyMap);
 
+        /**
+         * Jackson-databind is the library for serialization and de-serialization
+         * rest assured needs it in the dependency, so it can automatically convert the java object
+         * to json with additional code
+         */
+
         given()
                 .log().all()
                 .contentType(ContentType.JSON)
@@ -50,5 +56,32 @@ public class PostRequestWithObject extends SpartanTestBase {
                 .then().log().all()
                 .statusCode(201);
     }
+
+    @Test
+    public void testPostRequestWithAMapAndRandomData(){
+
+        Map<String, Object> bodyMap = new LinkedHashMap<>();
+        bodyMap.put("name", "API-2 Post");
+        bodyMap.put("gender", "Male");
+        bodyMap.put("phone", "5554447777");
+        System.out.println("bodyMap = " + bodyMap);
+
+        /**
+         * Jackson-databind is the library for serialization and de-serialization
+         * rest assured needs it in the dependency, so it can automatically convert the java object
+         * to json with additional code
+         */
+
+        given()
+                .log().all()
+                .contentType(ContentType.JSON)
+                .body(bodyMap)
+                .when()
+                .post("/spartans")
+                .then().log().all()
+                .statusCode(201);
+    }
+
+
 
 }
