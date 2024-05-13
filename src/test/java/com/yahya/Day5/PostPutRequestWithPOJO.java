@@ -16,7 +16,6 @@ import org.junit.jupiter.api.BeforeAll;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
-
 import static io.restassured.RestAssured.*;
 
 public class PostPutRequestWithPOJO extends SpartanTestBase{
