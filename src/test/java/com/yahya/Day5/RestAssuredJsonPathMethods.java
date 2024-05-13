@@ -60,7 +60,49 @@ public class RestAssuredJsonPathMethods extends SpartanTestBase {
         // Get the jsonPath object from response
         JsonPath jsonPath = response.jsonPath();
         int myId2 = jsonPath.getInt("id");
+        System.out.println("myId2 = " + myId2);
         String myName = jsonPath.getString("name");
         System.out.println("myName = " + myName);
+        long phoneNumber = jsonPath.getLong("phone");
+        System.out.println("phoneNumber = " + phoneNumber);
+
+        // store this json result into a Map object
+        // the path to get entire body would be an empty string because
+        // the entire response is json object already!
+        // no need for a path to navigate to this json
+        // this will create a map object
+        // and all the key and value pairs of json as a value
+        Map<String, Object> responseBodyAsMap = jsonPath.getMap("");
+        System.out.println("responseBodyAsMap = " + responseBodyAsMap);
+        // access phone number field out of this map
+
+    }
+
+    // Send Request GET /spartans/search?nameContains=Ea&gender=Male
+    // get JsonPath object out of response so I can use specialized methods
+    // get totalElement field value using getX method
+    // get 3rd element phone using getX method
+    // get last element name using getX method
+    // save first json in json array into Map using getX method
+    @Test
+    public void testExtractingDataFromSearch(){
+
+        Response response = given()
+                .log().all()
+                .queryParam("nameContains", "Ea")
+                .queryParam("gender", "Male")
+                .when()
+                .get("/spartans/search")
+                .prettyPeek();
+
+        JsonPath jsonPath = response.jsonPath();
+        System.out.println("jsonPath.getInt(\"totalElement\") = " + jsonPath.getInt("totalElement"));
+        System.out.println("jsonPath.getLong(\"phone\") = " + jsonPath.getLong("content[2].phone"));
+        System.out.println("jsonPath.getInt(\"id[-1]\") = " + jsonPath.getString("content[-1].name"));
+
+        Map<String, Object> responseBodyAsMap = jsonPath.getMap("content[0]");
+        System.out.println("responseBodyAsMap = " + responseBodyAsMap);
+
+
     }
 }
