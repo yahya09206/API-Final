@@ -1,6 +1,7 @@
 package com.yahya.Day5;
 
 import com.yahya.utility.SpartanTestBase;
+import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Test;
 import com.yahya.utility.SpartanTestBase;
 import com.yahya.utility.SpartanUtil;
@@ -54,5 +55,12 @@ public class RestAssuredJsonPathMethods extends SpartanTestBase {
                 .when().get("/spartans/{id}")
                 .prettyPeek();
         // save the id from the response
+        int myId = response.path("id");
+
+        // Get the jsonPath object from response
+        JsonPath jsonPath = response.jsonPath();
+        int myId2 = jsonPath.getInt("id");
+        String myName = jsonPath.getString("name");
+        System.out.println("myName = " + myName);
     }
 }
