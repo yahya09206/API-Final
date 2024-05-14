@@ -114,7 +114,7 @@ public class RestAssuredJsonPathMethods extends SpartanTestBase {
         // create a class called SpartanWithID
         // add encapsulated fields id, name , gender, phone
         // add no arg constructor (no need for 4 args constructor because we don't create object ourselves)
-        // optionally add toString method so we can print it worked.
+        // optionally add toString method, so we can print it worked.
         // now we can use  jp.getObject("the path here" , SpartanWithID.class)
         // to save it into  SpartanWithID object  --> another de-serialization!
 
