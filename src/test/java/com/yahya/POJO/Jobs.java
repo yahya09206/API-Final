@@ -1,8 +1,10 @@
 package com.yahya.POJO;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Job {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Jobs {
 
     /**
      * "items": [
