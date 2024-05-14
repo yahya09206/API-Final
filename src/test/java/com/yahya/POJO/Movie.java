@@ -1,50 +1,57 @@
 package com.yahya.POJO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Movie {
 
-    private String Title;
-    private String Year;
-    private String ImdbID;
-    private String Type;
-    private String Poster;
+    @JsonProperty("Title")
+    private String title;
+    @JsonProperty("Year")
+    private String year;
+    @JsonProperty("imdbID")
+    private String imdbID;
+    @JsonProperty("Type")
+    private String type;
+    @JsonProperty("Poster")
+    private String poster;
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     public String getYear() {
-        return Year;
+        return year;
     }
 
     public void setYear(String year) {
-        Year = year;
+        year = year;
     }
 
     public String getImdbID() {
-        return ImdbID;
+        return imdbID;
     }
 
     public void setImdbID(String imdbID) {
-        ImdbID = imdbID;
+        imdbID = imdbID;
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
     public void setType(String type) {
-        Type = type;
+        this.type = type;
     }
 
     public String getPoster() {
-        return Poster;
+        return poster;
     }
 
     public void setPoster(String poster) {
-        Poster = poster;
+        this.poster = poster;
     }
 }
