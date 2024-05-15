@@ -42,6 +42,7 @@ public class ZipcodeApi {
                 .then().log().all().statusCode(is(200))
                 .contentType(ContentType.JSON)
                 .body("country", is("United States"))
-                .body("places[0].state", is("Virginia"));
+                .body("places[0].state", is("Virginia"))
+                .body("'post code'", equalTo("22030"));
     }
 }
