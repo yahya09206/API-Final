@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
@@ -55,8 +56,16 @@ public class ZipcodeApi {
      * GET "http://api.zippopotam.us/us/{zip}"
      * Verify the status code is 200
      */
+//    @ParameterizedTest
+//    @ValueSource(ints = {22030, 10019, 12345, 10000, 19152})
+//    public void testZipToCityDDT(int zipParam){
+//
+//        System.out.println("zipParam = " + zipParam);
+//        given().log().uri().pathParams("zip", zipParam).when().get("/{zip}").then().statusCode(200);
+//    }
+
     @ParameterizedTest
-    @ValueSource(ints = {22030, 10019, 12345, 10000, 19152})
+    @CsvFileSource(resources = "/zipcode.csv")
     public void testZipToCityDDT(int zipParam){
 
         System.out.println("zipParam = " + zipParam);

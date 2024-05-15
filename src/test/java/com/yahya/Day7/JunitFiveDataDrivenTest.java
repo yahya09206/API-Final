@@ -27,5 +27,4 @@ public class JunitFiveDataDrivenTest {
         System.out.println("genderParam = " + genderParam);
         System.out.println("phoneParam = " + phoneParam);
     }
-
 }
