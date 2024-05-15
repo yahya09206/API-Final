@@ -43,6 +43,7 @@ public class ZipcodeApi {
                 .contentType(ContentType.JSON)
                 .body("country", is("United States"))
                 .body("places[0].state", is("Virginia"))
-                .body("'post code'", equalTo("22030"));
+                .body("'post code'", equalTo("22030"))
+                .body("places[0].'place name'", equalTo("Fairfax"));
     }
 }
