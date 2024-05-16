@@ -1,17 +1,12 @@
 package com.yahya.Day7;
 
-import com.yahya.POJO.CarLombok;
-import com.yahya.POJO.Jobs;
-import com.yahya.utility.HRTestBase;
+
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
 import java.util.List;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
