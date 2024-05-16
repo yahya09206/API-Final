@@ -40,15 +40,18 @@ public class ZipcodeMethodSource {
     @MethodSource("getAllZipcodes")
     public void testAllZipcodes(String zipCodeParam){
         System.out.println("zipCodeParam = " + zipCodeParam);
+        given().log().uri().pathParam("zip", zipCodeParam)
+                .when().get("/{zip}")
+                .then().statusCode(200);
     }
 
     public static List<String> getAllZipcodes(){
 
         // Send GET to https://api.zippopotam.us/us/va/fairfax and store all the zipcodes
         // since this is not a @Test method, @BeforeAll will not affect this
-        // one way to do this is to provide full url directly
+        // one way to do this is to provide full url directly,
         // or we have to use .baseURI and .basePath in the given section for one time use
-        List<String> allZips = get("https://api.zippopotam.us/us/va/fairfax").path("places.'post code'");
+        List<String> allZips = get("https://api.zippopotam.us/us/va/Arlington").path("places.'post code'");
         return allZips;
     }
 }
