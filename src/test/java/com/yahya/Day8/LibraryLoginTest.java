@@ -37,14 +37,11 @@ public class LibraryLoginTest extends LibraryTestBase {
     @Test
     public void testAddBook(){
 
+        String libraryToken = getToken(); // call the method here
+        System.out.println("libraryToken = " + libraryToken);
+
         // first get library token by sending POST /login request
         // and save it(eventually will make a method out of it
-        String libraryToken = given().log().all()
-                .contentType(ContentType.URLENC)
-                .formParam("email", "librarian3@library")
-                .formParam("password", "libraryUser")
-                .when().post("/login").path("token");
-        System.out.println("libraryToken = " + libraryToken);
 
         Faker faker = new Faker();
 
