@@ -13,6 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
 public class LibraryLoginTest extends LibraryTestBase {
 
@@ -51,7 +52,7 @@ public class LibraryLoginTest extends LibraryTestBase {
         // you can use formParams method and pass map object instead
         Map<String, Object> bookMap = new LinkedHashMap<>();
         bookMap.put("name", faker.book().title());
-        bookMap.put("isbn", faker.numerify("######"));
+        bookMap.put("isbn", faker.code().isbn10());
         bookMap.put("year", faker.number().numberBetween(1000, 2024));
         bookMap.put("author", faker.book().author());
         bookMap.put("book_category_id", faker.number().numberBetween(1, 20));
@@ -60,5 +61,11 @@ public class LibraryLoginTest extends LibraryTestBase {
         System.out.println("bookMap = " + bookMap);
 
         // send request to POST /add_book
+        given().log().all().header("X-LIBRARY-TOKEN", libraryToken)
+                .contentType(ContentType.JSON)
+                .formParams(bookMap)
+                .when().post("/add_book")
+                .then().log().all().body("message", is("The book has been created."));
+
     }
 }
