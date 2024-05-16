@@ -62,7 +62,7 @@ public class LibraryLoginTest extends LibraryTestBase {
 
         // send request to POST /add_book
         given().log().all().header("X-LIBRARY-TOKEN", libraryToken)
-                .contentType(ContentType.JSON)
+                .contentType(ContentType.URLENC)
                 .formParams(bookMap)
                 .when().post("/add_book")
                 .then().log().all().body("message", is("The book has been created."));
