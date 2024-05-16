@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
 import java.util.List;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -32,6 +34,12 @@ public class ZipcodeMethodSource {
     @AfterAll
     public static void tearDown(){
         reset();
+    }
+
+    @ParameterizedTest
+    @MethodSource("getAllZipcodes")
+    public void testAllZipcodes(String zipCodeParam){
+        System.out.println("zipCodeParam = " + zipCodeParam);
     }
 
     public static List<String> getAllZipcodes(){
