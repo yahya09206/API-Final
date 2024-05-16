@@ -12,6 +12,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.yahya.utility.LibraryApi_Util.getRandomBookMap;
+import static com.yahya.utility.LibraryApi_Util.getToken;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -47,20 +49,12 @@ public class LibraryLoginTest extends LibraryTestBase {
 
         // if you have many form parameters as the body
         // you can use formParams method and pass map object instead
-        Map<String, Object> bookMap = new LinkedHashMap<>();
-        bookMap.put("name", faker.book().title());
-        bookMap.put("isbn", faker.code().isbn10());
-        bookMap.put("year", faker.number().numberBetween(1000, 2024));
-        bookMap.put("author", faker.book().author());
-        bookMap.put("book_category_id", faker.number().numberBetween(1, 20));
-        bookMap.put("description", faker.chuckNorris().fact());
-
-        System.out.println("bookMap = " + bookMap);
+        System.out.println("bookMap = " + getRandomBookMap());
 
         // send request to POST /add_book
         given().log().all().header("X-LIBRARY-TOKEN", libraryToken)
                 .contentType(ContentType.URLENC)
-                .formParams(bookMap)
+                .formParams(getRandomBookMap())
                 .when().post("/add_book")
                 .then().log().all().body("message", is("The book has been created."));
 
