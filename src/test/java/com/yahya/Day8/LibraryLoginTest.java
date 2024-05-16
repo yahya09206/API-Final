@@ -2,6 +2,8 @@ package com.yahya.Day8;
 
 import com.yahya.utility.LibraryTestBase;
 import io.restassured.http.ContentType;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -24,5 +26,24 @@ public class LibraryLoginTest extends LibraryTestBase {
                 .formParam("password", password)
                 .when().post("/login")
                 .then().log().ifValidationFails().statusCode(200);
+    }
+
+    @DisplayName("Librarian Should be able to add book")
+    @Test
+    public void testAddBook(){
+
+        // first get library token by sending POST /login request
+        // and save it(eventually will make a method out of it
+        given().log().all()
+                .contentType(ContentType.URLENC)
+                .formParam("email", "librarian3@library")
+                .formParam("password", "libraryUser")
+                .when().post("/login").path("token");
+
+
+        // if you have many form parameters as the body
+        // you can use formParams method and pass map object instead
+
+        // send request to POST /add_book
     }
 }
