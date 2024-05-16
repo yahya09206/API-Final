@@ -22,7 +22,7 @@ public class LibraryLoginTest extends LibraryTestBase {
                 .contentType(ContentType.URLENC)
                 .formParam("email", username)
                 .formParam("password", password)
-                .when().get("/login")
+                .when().post("/login")
                 .then().log().ifValidationFails().statusCode(200);
     }
 }
