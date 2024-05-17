@@ -13,6 +13,7 @@ public class HRTestBase {
 
         RestAssured.baseURI = "http://44.211.192.252:1000";
         RestAssured.basePath = "/ords/hr";
+        DB_Util.createConnection();
     }
 
     @AfterAll
@@ -22,6 +23,7 @@ public class HRTestBase {
         // apis, it's better to set the baseURI basePATH back to its original value using reset method
         // RestAssured.rest()
         reset();
+        DB_Util.destroy();
 
     }
 }
