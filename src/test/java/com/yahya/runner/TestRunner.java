@@ -13,7 +13,8 @@ import org.junit.platform.suite.api.*;
 //@IncludeTags("smokeAll")
 //@ExcludeTags("smoke2")
 @SelectPackages("com.yahya.tests")
-@IncludeTags({"smoke1", "tc1"})
+//@IncludeTags({"smoke1", "tc1"})
+@IncludeTags("db")
 public class TestRunner {
 
 }
