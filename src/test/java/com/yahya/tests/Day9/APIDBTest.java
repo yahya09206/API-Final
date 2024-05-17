@@ -4,7 +4,11 @@ import com.yahya.utility.DB_Util;
 import com.yahya.utility.HRTestBase;
 import org.junit.jupiter.api.Test;
 
-public class API_DB_Test extends HRTestBase {
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
+
+
+public class APIDBTest extends HRTestBase {
 
     @Test
     public void testRegion(){
@@ -28,5 +32,13 @@ public class API_DB_Test extends HRTestBase {
         // Prepare expected result here
         DB_Util.runQuery("SELECT * FROM REGIONS");
         int expectedCount = DB_Util.getRowCount();
+
+        given().log().uri()
+                .when().get("/regions")
+                .then().log().ifValidationFails()
+                .statusCode(200)
+                .body("count", is(expectedCount))
+                .body("items", hasSize(expectedCount));
+
     }
 }
