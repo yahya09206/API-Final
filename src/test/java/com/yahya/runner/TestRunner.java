@@ -10,7 +10,8 @@ import org.junit.platform.suite.api.SuiteDisplayName;
 @Suite
 @SuiteDisplayName("Smoke Test")
 //@SelectPackages("com.yahya.Day8") // if you want to run a whole package
-@SelectClasses(LibraryLoginTest.class) // If you just want to run 1 class
+@SelectPackages({"com.yahya.Day7", "com.yahya.Day6"})
+//@SelectClasses(LibraryLoginTest.class) // If you just want to run 1 class
 public class TestRunner {
 
 
