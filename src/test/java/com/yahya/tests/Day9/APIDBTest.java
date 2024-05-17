@@ -67,6 +67,8 @@ public class APIDBTest extends HRTestBase {
         given().pathParam("region_id", 1)
                 .log().uri()
                 .when().get("/regions/{region_id}")
-                .then().log().all().statusCode(200);
+                .then().log().all().statusCode(200)
+                .body("region_id", equalTo(expectedRegionID))
+                .body("region_name", equalTo(expectedRegionName));
     }
 }
