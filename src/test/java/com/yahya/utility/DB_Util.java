@@ -48,6 +48,17 @@ public class DB_Util {
 //        } catch (Exception e) {
 //            System.out.println("CONNECTION HAS FAILED " + e.getMessage() );
 //        }
+        DB_Util.createConnection(url, username, password);
+
+    }
+
+    public static void createLibraryConnection(){
+
+        String url      = ConfigReader.read("library2.database.url") ;
+        String username = ConfigReader.read("library2.database.username") ;
+        String password = ConfigReader.read("library2.database.password") ;
+        System.out.println("username = " + username);
+        System.out.println("password = " + password);
         createConnection(url, username, password);
 
     }
