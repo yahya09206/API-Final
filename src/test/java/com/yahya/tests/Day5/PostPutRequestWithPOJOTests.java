@@ -2,23 +2,17 @@ package com.yahya.tests.Day5;
 
 import com.github.javafaker.Faker;
 import com.yahya.POJO.Spartan;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import com.yahya.utility.SpartanTestBase;
-import com.yahya.utility.SpartanUtil;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import org.junit.jupiter.api.Test;
+
 import static io.restassured.RestAssured.*;
 
-public class PostPutRequestWithPOJO extends SpartanTestBase{
+@Tag("tc1")
+public class PostPutRequestWithPOJOTests extends SpartanTestBase{
 
 
     @Test
