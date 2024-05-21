@@ -26,6 +26,6 @@ public class JsonSchemaValidationTest extends SpartanTestBase {
                 .queryParams(queryMap)
                 .when().get("/spartans/search")
                 .then().statusCode(200)
-                .body(matchesJsonSchema("SearchSpartanSchema.json"));
+                .body(matchesJsonSchemaInClasspath("SearchSpartanSchema.json"));
     }
 }
