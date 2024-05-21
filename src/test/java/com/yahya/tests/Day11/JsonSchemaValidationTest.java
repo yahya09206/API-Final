@@ -12,6 +12,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 public class JsonSchemaValidationTest extends SpartanTestBase {
 
+
     @DisplayName("Test GET /spartans/search schema")
     @Test
     public void testSearchSpartan(){

@@ -11,7 +11,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
+import static org.hamcrest.Matchers.is;
+
 public class XMLResponseTest {
 
     @BeforeAll
@@ -35,6 +36,7 @@ public class XMLResponseTest {
                 .when().get("/drivers/{driverId}")
                 .then().log().all()
                 .statusCode(200)
-                .contentType(ContentType.XML);
+                .contentType(ContentType.XML)
+                .body("MRData.DriverTable.Driver.GivenName", is("Carlo"));
     }
 }
