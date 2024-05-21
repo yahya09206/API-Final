@@ -3,17 +3,12 @@ package com.yahya.tests.Day11;
 import com.yahya.utility.SpartanTestBase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static io.restassured.RestAssured.get;
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static io.restassured.RestAssured.*;
+import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 public class JsonSchemaValidationTest extends SpartanTestBase {
 
@@ -30,6 +25,7 @@ public class JsonSchemaValidationTest extends SpartanTestBase {
         given().log().uri()
                 .queryParams(queryMap)
                 .when().get("/spartans/search")
-                .then().statusCode(200);
+                .then().statusCode(200)
+                .body(matchesJsonSchema("SearchSpartanSchema.json"));
     }
 }
