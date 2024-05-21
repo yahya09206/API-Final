@@ -10,6 +10,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
+import static org.hamcrest.Matchers.*;
 
 public class NegativeTest extends SpartanTestBase {
 
@@ -56,7 +57,10 @@ public class NegativeTest extends SpartanTestBase {
                 .body(invalidBody)
                 .when().post("/spartans")
                 .then().log().all()
-                .statusCode(400);
+                .statusCode(400)
+                .body("message", is("Invalid Input!"))
+                .body("errorCount", equalTo(1))
+                .body("errors[0].errorField", is("name"));
     }
 
 }
