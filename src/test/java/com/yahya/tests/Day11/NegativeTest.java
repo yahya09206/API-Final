@@ -5,6 +5,9 @@ import com.yahya.utility.SpartanTestBase;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -63,4 +66,19 @@ public class NegativeTest extends SpartanTestBase {
                 .body("errors[0].errorField", is("name"));
     }
 
+    @ParameterizedTest
+    @CsvFileSource(resources = "/negativePostData.csv", numLinesToSkip = 1)
+    public void testNegativeTestPayload(String nameParam, String genderParam, long phoneParam, int expectedCount){
+
+        Spartan invalidBody = new Spartan(nameParam, genderParam, phoneParam);
+
+        given().log().all()
+                .contentType(ContentType.JSON)
+                .body(invalidBody)
+                .when().post("/spartans")
+                .then().log().all()
+                .statusCode(400)
+                .body("message", is("Invalid Input!"))
+                .body("errorCount", equalTo(expectedCount));
+    }
 }
